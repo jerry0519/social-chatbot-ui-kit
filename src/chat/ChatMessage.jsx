@@ -83,4 +83,57 @@ export function MessageBar() {
         </div>
       </div>}
       <div className={styles.bar_inner}>
-        <div className={s
+        <div className={styles.bar_type}>
+          <Textarea transparent={true} rows="3" value={typeingMessage?.content || ''} onFocus={() => setIs({ inputing: true })} onBlur={() => setIs({ inputing: false })} placeholder="Enter somthing...." onChange={setMessage} />
+        </div>
+        <div className={styles.bar_icon}>
+          {typeingMessage?.content &&
+            <Tooltip text="clear">
+              <Icon className={styles.icon} type="cancel" onClick={clearTypeing} />
+            </Tooltip>}
+          <Tooltip text="history">
+            <Icon className={styles.icon} type="history" />
+          </Tooltip>
+          <Icon className={styles.icon} type="send" onClick={sendMessage} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export function MessageContainer() {
+  const { options } = useGlobal()
+  const { message } = useMesssage()
+  const { messages = [] } = message || {}
+  if (options?.openai?.apiKey) {
+    return (
+      <React.Fragment>
+        {
+          messages.length ? <div className={styles.container}>
+            {messages.map((item, index) => <MessageItem key={index} {...item} />)}
+            {message?.error && <Error />}
+          </div> : <ChatHelp />
+        }
+      </React.Fragment>
+    )
+  } else {
+    return <EmptyChat />
+  }
+}
+
+export function ChatMessage() {
+  const { is } = useGlobal()
+  return (
+    <React.Fragment>
+      <div className={styles.message}>
+        <MessageHeader />
+        <ScrollView>
+          <MessageContainer />
+          {is.thinking && <Loading />}
+        </ScrollView>
+        <MessageBar />
+      </div>
+    </React.Fragment >
+  )
+}
+
