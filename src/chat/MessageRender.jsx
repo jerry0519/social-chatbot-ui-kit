@@ -30,4 +30,10 @@ export const MessageRender = memo((props) => {
           ) : (
             <code {...props} className={`code-line`}>
               {children}
-           
+            </code>
+          )
+        }
+      }}
+    />
+  )
+})
