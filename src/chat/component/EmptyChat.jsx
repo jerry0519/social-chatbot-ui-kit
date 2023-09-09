@@ -12,4 +12,9 @@ export function EmptyChat() {
       <EmptyImg />
       <div className={styles.empty_inner}>
         <Input onChange={(val) => setApiKey(val)} placeholder="OpenAI API key" className={styles.empty_input} />
- 
+        <Button onClick={() => setModel({ apiKey })}>Save</Button>
+      </div>
+      <div className={styles.empty_text}>API key is stored locally. Create one on OpenAI</div>
+    </div>
+  )
+}
