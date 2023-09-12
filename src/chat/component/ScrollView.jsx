@@ -24,4 +24,9 @@ export const ScrollView = (props) => {
   }, [is.thinking]);
 
   useEffect(() => {
-    window.requestAnimationFram
+    window.requestAnimationFrame(handleScroll);
+    setHeight(scrollRef.current.scrollHeight);
+  }, [scrollRef.current]);
+
+  return <div ref={scrollRef} className={classnames(styles.scroll, className)} {...rest}> {children}</div >
+}
