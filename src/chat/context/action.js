@@ -56,4 +56,77 @@ export default function action(state, dispatch) {
             },
             onStar() {},
             onEnd() {
-         
+              setState({
+                is: { ...is, thinking: false },
+              });
+            },
+            onError(res) {
+              console.log(res);
+              const { error } = res || {};
+              if (error) {
+                newChat.splice(currentChat, 1, {
+                  ...chat[currentChat],
+                  error,
+                });
+                setState({
+                  chat: newChat,
+                  is: { ...is, thinking: false },
+                });
+              }
+            },
+          });
+          console.log(res);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    },
+
+    newChat() {
+      const { chat } = state;
+      const chatList = [
+        ...chat,
+        {
+          title: "This is a New Conversations",
+          id: Date.now(),
+          messages: [],
+          ct: Date.now(),
+          icon: [2, "files"],
+        },
+      ];
+      setState({ chat: chatList, currentChat: chatList.length - 1 });
+    },
+
+    modifyChat(arg, index) {
+      const chat = [...state.chat];
+      chat.splice(index, 1, { ...chat[index], ...arg });
+      setState({ chat, currentEditor: null });
+    },
+
+    editChat(index, title) {
+      const chat = [...state.chat];
+      chat.splice(index, 1, [...chat[index], title]);
+      setState({
+        chat,
+      });
+    },
+    removeChat(index) {
+      const chat = [...state.chat];
+      chat.splice(index, 1);
+      const payload =
+        state.currentChat === index
+          ? { chat, currentChat: index - 1 }
+          : { chat };
+      setState({
+        ...payload,
+      });
+    },
+
+    setMessage(content) {
+      const typeingMessage =
+        content === ""
+          ? {}
+          : {
+              role: "user",
+              content,
+              id: D
