@@ -129,4 +129,66 @@ export default function action(state, dispatch) {
           : {
               role: "user",
               content,
-              id: D
+              id: Date.now(),
+            };
+      setState({ is: { ...state.is, typeing: true }, typeingMessage });
+    },
+
+    clearMessage() {
+      const chat = [...state.chat];
+      chat[state.currentChat].messages = [];
+      setState({
+        chat,
+      });
+    },
+
+    removeMessage(index) {
+      const messages = state.chat[state.currentChat].messages;
+      const chat = [...state.chat];
+      messages.splice(index, 1);
+      chat[state.currentChat].messages = messages;
+      setState({
+        chat,
+      });
+    },
+
+    setOptions({ type, data = {} }) {
+      console.log(type, data);
+      let options = { ...state.options };
+      options[type] = { ...options[type], ...data };
+      setState({ options });
+    },
+
+    setIs(arg) {
+      const { is } = state;
+      setState({ is: { ...is, ...arg } });
+    },
+
+    currentList() {
+      return state.chat[state.currentChat];
+    },
+
+    stopResonse() {
+      setState({
+        is: { ...state.is, thinking: false },
+      });
+    },
+  };
+}
+
+export const datas = {
+  id: "chatcmpl-7AEK9Dlw96m5TejBKIKUgjyUHVTCa",
+  object: "chat.completion",
+  created: 1682672697,
+  model: "gpt-3.5-turbo-0301",
+  usage: {
+    prompt_tokens: 34,
+    completion_tokens: 303,
+    total_tokens: 337,
+  },
+  choices: [
+    {
+      message: {
+        role: "assistant",
+        content:
+          '好的，以下是一个简单的useKeyboard hooks。\n\n```jsx\nimport { useState, useEffect } from "react"; \n\nexport default function useKeyboard(targetKey) { \n  const [keyPressed, setKeyPressed] = useState(false); \n  \n  const downHandler = ({ key }) => {\n    if (key === targetKey) {\n      setKeyPressed(true); \n    } \n  }; \n  \n  const upHandler = ({ key }) => { \n    if (key
