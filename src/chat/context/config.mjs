@@ -23,4 +23,9 @@ export const Models = {
   chatgptApi4_32k: { value: "gpt-4-32k", desc: "ChatGPT (GPT-4-32k)" },
   gptApiDavinci: { value: "text-davinci-003", desc: "GPT-3.5" },
   customModel: { value: "", desc: "Custom Model" },
-  azureOpenAi: { value: "", des
+  azureOpenAi: { value: "", desc: "ChatGPT (Azure)" },
+  waylaidwandererApi: { value: "", desc: "Waylaidwanderer API (Github)" },
+  poeAiWebCustom: { value: "", desc: "Poe AI (Web, Custom)" },
+  poeAiWebChatGpt: { value: "chatgpt", desc: "Poe AI (Web, ChatGPT)" },
+  poeAiWebDragonfly: { value: "dragonfly", desc: "Poe AI (Web, Dragonfly)" },
+};
