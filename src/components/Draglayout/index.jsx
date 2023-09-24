@@ -57,4 +57,7 @@ DragLayout.defaultProps = {
 }
 DragLayout.propTypes = {
   leftWidth: PropTypes.number.isRequired,
-  rightWidth: PropTypes.number.isRequire
+  rightWidth: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
