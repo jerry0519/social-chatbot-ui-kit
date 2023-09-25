@@ -31,4 +31,19 @@ export const Resizable = ({ children }) => {
   };
 
   const handleMouseUp = () => {
-    setIsResizing
+    setIsResizing(false);
+  };
+
+  return (
+    <div
+      className='resizable'
+      ref={resizeRef}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      style={{ width: size.width, height: size.height, position: 'absolute' }}
+    >
+      {children}
+    </div>
+  );
+};
