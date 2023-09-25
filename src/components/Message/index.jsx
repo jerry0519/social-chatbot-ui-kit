@@ -68,4 +68,37 @@ const xMessage = (function () {
     const { duration, getContainer, closeIcon } = config
 
     Notification.newInstance({
-    
+      getContainer: getContainer,
+      duration: duration || 4.5,
+      closeIcon
+    }, (notice) => message = notice)
+  }
+
+  const remove = (key) => {
+    message.removeNotice(key)
+  }
+
+  const destroy = () => {
+    message.destroy()
+  }
+
+  if (message) {
+    return {
+      config,
+      pop,
+      remove,
+      destroy
+    }
+  }
+  // 如果为创建实例，则创建默认实例
+  Notification.newInstance({}, (notice) => message = notice)
+
+  return {
+    config,
+    pop,
+    remove,
+    destroy
+  }
+})()
+
+export default xMessage
