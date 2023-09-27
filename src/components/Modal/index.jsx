@@ -45,4 +45,37 @@ export const Modal = (props) => {
         <div className={classnames(styles.modal, className)}>
           <div className={styles.header}>
             <div className={styles.title}>{title}</div>
-            <Button type="icon" icon="close"
+            <Button type="icon" icon="close" onClick={handleClose} />
+          </div>
+          <div
+            className={styles.container}
+            style={{
+              width: size.width,
+              height: size.height,
+              top: position.y,
+              left: position.x
+            }}
+          >
+            {children}
+          </div>
+          <div className={styles.footer}>
+            <div>
+              {
+                footer && <React.Fragment>
+                  <Button>取消</Button>
+                  <Button>确定</Button>
+                </React.Fragment>
+              }
+            </div>
+          </div>
+        </div>
+      </Draggable >
+    </div >
+  );
+  return hidden ? ReactDOM.createPortal(container, document.body) : null;
+};
+
+
+Modal.defaultProps = {
+  title: '',
+}
