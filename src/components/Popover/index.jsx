@@ -30,4 +30,31 @@ export function Popover(props) {
     trigger === 'hover' && setVisible(false)
   }
   const handleTrigger = () => {
-    trigger
+    trigger === 'click' && setVisible(!visible)
+  }
+  return (
+    <div ref={boxRef} className={styles.container} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <div ref={triggerRef} onClick={handleTrigger} >
+        {props.children}
+      </div>
+      {visible && <div
+        ref={containerRef}
+        className={classnames(styles.content, styles[position])}
+        style={contentPosition}
+      >
+        {content}
+      </div>}
+    </div>
+  );
+}
+
+Popover.propTypes = {
+  content: PropTypes.node.isRequired,
+  position: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
+  trigger: PropTypes.oneOf(['hover', 'click']),
+};
+
+Popover.defaultProps = {
+  position: 'top',
+  trigger: 'hover'
+};
