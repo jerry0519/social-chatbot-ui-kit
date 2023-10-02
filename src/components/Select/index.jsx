@@ -23,4 +23,33 @@ export const Select = forwardRef((props, ref) => {
   ));
   return (
     <div className={classnames(styles.inner)}>
- 
+      <select
+        ref={ref}
+        className={styles.select}
+        {...rest}
+        value={controlled ? props.value : selectedValue}
+        onChange={handleChange}
+      >
+        {optionsList}
+      </select>
+    </div>
+  );
+});
+
+Select.propTypes = {
+  className: PropTypes.string,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.any.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  value: PropTypes.any,
+  defaultValue: PropTypes.any,
+  onChange: PropTypes.func.isRequired,
+};
+
+
+Select.defaultProps = {
+  options: []
+}
