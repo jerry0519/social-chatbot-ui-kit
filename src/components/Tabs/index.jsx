@@ -26,4 +26,20 @@ function Tabs({ children, tabsChange }) {
       <div className={styles.headers}>
         {tabs.map((child, index) => (
           <div
-         
+            key={index}
+            onClick={(e) => handleTabsChange(e, index)}
+            className={classnames(styles.item, index === active ? 'active' : '')}
+          >
+            {child.props.title}
+          </div>
+        ))}
+      </div>
+      <div className={styles.container}>
+        {tabs[active]}
+      </div>
+    </div >
+  )
+}
+
+Tabs.Panel = Panel
+export { Tabs }
