@@ -65,4 +65,25 @@ export const Textarea = forwardRef((props, ref) => {
   );
 });
 
-Textarea.
+Textarea.defaultProps = {
+  showClear: false,
+  disable: false,
+  defaultValue: '',
+  maxHeight: 200,
+  placeholder: '',
+  rows: '1',
+  transparent: false,
+  value: ''
+};
+
+Textarea.propTypes = {
+  showClear: Proptypes.bool,
+  transparent: Proptypes.bool,
+  onClear: Proptypes.func,
+  className: Proptypes.string,
+  onChange: Proptypes.func,
+  disable: Proptypes.bool,
+  placeholder: Proptypes.string,
+  maxHeight: Proptypes.number,
+  rows: Proptypes.string,
+}
