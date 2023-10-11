@@ -75,4 +75,22 @@
       right: 100%;
       transform: translate(-15%, -50%) scale(0.9);
       &:after {
-        
+        border-left-color: rgba(0, 0, 0, 0.7);
+        top: 50%;
+        right: 0;
+        transform: translate(100%, -50%);
+      }
+    }
+    .right {
+      top: 50%;
+      left: 100%;
+      transform: translate(15%, -50%) scale(0.9);
+      &:after {
+        border-right-color: rgba(0, 0, 0, 0.7);
+        top: 50%;
+        left: 0;
+        transform: translate(-100%, -50%);
+      }
+    }
+  }
+}
