@@ -11,4 +11,15 @@ export function Tooltip({ text, className, children, position }) {
         <div className={styles.inner}>
           {text}
         </div>
-   
+      </div>
+    </div >
+  );
+}
+
+Tooltip.defaultProps = {
+  position: 'top'
+}
+
+Tooltip.propTypes = {
+  position: PropTypes.string,
+}
