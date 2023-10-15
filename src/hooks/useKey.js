@@ -12,4 +12,15 @@ export function useCtrlEnterSend(callback) {
       const isCtrlEnter = (event.ctrlKey || event.metaKey) && event.keyCode === 13;
       if (isCtrlEnter) {
         event.preventDefault();
-    
+        callbackRef.current();
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+}
+
